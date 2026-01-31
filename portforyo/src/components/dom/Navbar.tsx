@@ -70,9 +70,9 @@ const Navbar = () => {
                     opacity: isVisible ? 1 : 0
                 }}
                 transition={{ duration: 0.3, ease: 'easeOut' }}
-                className="fixed top-4 left-1/2 -translate-x-1/2 z-[999] px-2 py-2 rounded-full backdrop-blur-xl border bg-black/40 border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                className="fixed top-4 left-1/2 -translate-x-1/2 z-[999] max-w-[95vw] overflow-x-auto no-scrollbar rounded-full backdrop-blur-xl border bg-black/40 border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
             >
-                <ul className="flex items-center gap-1">
+                <ul className="flex items-center gap-1 p-2 min-w-max">
                     {navItems.map((item) => {
                         const isActive = activeSection === item.href.replace('#', '');
                         return (
@@ -80,9 +80,9 @@ const Navbar = () => {
                                 <button
                                     onClick={() => scrollTo(item.href)}
                                     onMouseEnter={playHover}
-                                    className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${isActive
-                                            ? 'text-white'
-                                            : 'text-gray-400 hover:text-white'
+                                    className={`relative px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-medium rounded-full transition-all duration-300 ${isActive
+                                        ? 'text-white'
+                                        : 'text-gray-400 hover:text-white'
                                         }`}
                                 >
                                     {isActive && (
@@ -99,17 +99,17 @@ const Navbar = () => {
                     })}
 
                     {/* Divider */}
-                    <li className="w-px h-6 mx-1 bg-white/20" />
+                    <li className="w-px h-4 md:h-6 mx-1 bg-white/20" />
 
                     {/* Sound Toggle */}
                     <li>
                         <button
                             onClick={handleToggleMute}
                             onMouseEnter={playHover}
-                            className="p-2 rounded-full transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/10"
+                            className="p-1.5 md:p-2 rounded-full transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/10"
                             title={isMuted ? 'Unmute' : 'Mute'}
                         >
-                            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                            {isMuted ? <VolumeX size={16} className="md:w-[18px] md:h-[18px]" /> : <Volume2 size={16} className="md:w-[18px] md:h-[18px]" />}
                         </button>
                     </li>
                 </ul>

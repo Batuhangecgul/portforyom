@@ -10,6 +10,17 @@ const CustomCursor = () => {
     const cursorXSpring = useSpring(cursorX, springConfig);
     const cursorYSpring = useSpring(cursorY, springConfig);
 
+    const trailingSpringConfig = { damping: 35, stiffness: 200 };
+    const trailingX = useSpring(cursorX, trailingSpringConfig);
+    const trailingY = useSpring(cursorY, trailingSpringConfig);
+
+    // Don't render custom cursor on touch devices
+    const [isTouch, setIsTouch] = useState(false);
+
+    useEffect(() => {
+        setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+    }, []);
+
     useEffect(() => {
         const moveCursor = (e: MouseEvent) => {
             cursorX.set(e.clientX - 8);
@@ -38,13 +49,6 @@ const CustomCursor = () => {
         };
     }, [cursorX, cursorY]);
 
-    // Don't render custom cursor on touch devices
-    const [isTouch, setIsTouch] = useState(false);
-
-    useEffect(() => {
-        setIsTouch(window.matchMedia("(pointer: coarse)").matches);
-    }, []);
-
     if (isTouch) return null;
 
     return (
@@ -64,8 +68,8 @@ const CustomCursor = () => {
             <motion.div
                 className="fixed top-0 left-0 w-10 h-10 rounded-full border border-primary/50 pointer-events-none z-[9998]"
                 style={{
-                    x: useSpring(cursorX, { damping: 35, stiffness: 200 }),
-                    y: useSpring(cursorY, { damping: 35, stiffness: 200 }),
+                    x: trailingX,
+                    y: trailingY,
                     translateX: '-12px',
                     translateY: '-12px',
                     scale: isHovering ? 1.5 : 1,

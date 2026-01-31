@@ -26,8 +26,8 @@ const About = () => {
     return (
         <section ref={containerRef} id="about" className="min-h-[50vh] flex flex-col justify-center px-6 md:px-20 max-w-7xl mx-auto py-20 pointer-events-none">
             <div ref={textRef} className="pointer-events-auto z-10">
-                <h2 className="text-3xl font-semibold text-primary mb-8">About Me</h2>
-                <div className="text-xl md:text-3xl leading-relaxed text-gray-300 font-light max-w-4xl space-y-6">
+                <h2 className="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">About Me</h2>
+                <div className="text-lg md:text-xl lg:text-3xl leading-relaxed text-gray-300 font-light max-w-4xl space-y-6">
                     <p>
                         I'm <span className="text-white font-normal">Batuhan Geçgül</span>, a 20-year-old <span className="text-white font-normal">Full-Stack Developer</span> passionate about building modern, efficient, and scalable web applications.
                     </p>

@@ -59,7 +59,7 @@ const Projects = () => {
         });
 
         // Horizontal scroll animation
-        if (scrollContainerRef.current) {
+        if (scrollContainerRef.current && window.innerWidth > 768) {
             const scrollWidth = scrollContainerRef.current.scrollWidth - window.innerWidth + 200;
 
             gsap.to(scrollContainerRef.current, {
@@ -78,21 +78,21 @@ const Projects = () => {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} id="projects" className="min-h-screen overflow-hidden pointer-events-none">
-            <div className="pointer-events-auto z-10 h-screen flex flex-col justify-center px-6 md:px-20">
+        <section ref={containerRef} id="projects" className="min-h-screen md:h-screen overflow-hidden pointer-events-none py-20 md:py-0">
+            <div className="pointer-events-auto z-10 min-h-screen md:h-screen flex flex-col justify-center px-6 md:px-20 relative">
                 <div className="flex items-center gap-4 mb-8">
                     <h2 ref={headingRef} className="text-4xl md:text-6xl font-bold text-white">Selected Works</h2>
-                    <ArrowRight size={40} className="text-primary animate-pulse" />
-                    <span className="text-gray-500 text-lg">Scroll horizontally</span>
+                    <ArrowRight size={40} className="text-primary animate-pulse hidden md:block" />
+                    <span className="text-gray-500 text-lg hidden md:block">Scroll horizontally</span>
                 </div>
 
                 <div
                     ref={scrollContainerRef}
-                    className="flex gap-8 pl-4"
-                    style={{ width: 'fit-content' }}
+                    className="flex flex-col md:flex-row gap-8 pl-4 md:pl-4 overflow-x-hidden md:overflow-visible"
+                    style={{ width: window.innerWidth > 768 ? 'fit-content' : '100%' }}
                 >
                     {projects.map((project, index) => (
-                        <TiltCard key={index} className="flex-shrink-0 w-[400px] md:w-[500px]">
+                        <TiltCard key={index} className="flex-shrink-0 w-[85vw] sm:w-[400px] md:w-[500px]">
                             <div
                                 className="group relative p-8 rounded-2xl h-[400px] flex flex-col overflow-hidden"
                                 style={{

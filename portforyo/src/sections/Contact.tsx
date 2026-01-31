@@ -103,7 +103,7 @@ const Contact = () => {
     return (
         <section ref={containerRef} id="contact" className="min-h-screen flex flex-col justify-center px-6 md:px-20 max-w-7xl mx-auto py-20 pointer-events-none">
             <div className="pointer-events-auto z-10 w-full">
-                <h2 ref={headingRef} className="text-4xl md:text-7xl font-bold mb-6 text-white">
+                <h2 ref={headingRef} className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 text-white">
                     Let's work
                     <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
@@ -111,7 +111,7 @@ const Contact = () => {
                     </span>
                 </h2>
 
-                <div ref={contentRef} className="grid md:grid-cols-2 gap-16 mt-16">
+                <div ref={contentRef} className="grid md:grid-cols-2 gap-8 md:gap-16 mt-8 md:mt-16">
                     {/* Left side - Info */}
                     <div className="space-y-8">
                         <p className="text-xl text-gray-400 leading-relaxed">
