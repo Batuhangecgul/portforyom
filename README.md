@@ -1,1 +1,1 @@
-# portforyom
+kisisel portfolyo sitesi rect kulanılarak gelistirilmistir
