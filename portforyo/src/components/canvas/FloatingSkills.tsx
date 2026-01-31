@@ -1,5 +1,5 @@
-import { useMemo, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useState } from 'react';
 import { Physics, useSphere, usePlane } from '@react-three/cannon';
 import { Text, Environment } from '@react-three/drei';
 
@@ -18,17 +18,24 @@ const skills = [
     { name: 'Git', color: '#f05032' },
 ];
 
-const SkillSphere = ({ position, args, color, name }: any) => {
+interface SkillSphereProps {
+    position: [number, number, number];
+    args: [number, number, number];
+    color: string;
+    name: string;
+}
+
+const SkillSphere = ({ position, args, color, name }: SkillSphereProps) => {
     const [ref] = useSphere(() => ({
         mass: 1,
         position,
-        args,
+        args: [args[0]],
         linearDamping: 0.4,
         angularDamping: 0.4,
     }));
 
     return (
-        <mesh ref={ref as any} castShadow receiveShadow>
+        <mesh ref={ref} castShadow receiveShadow>
             <sphereGeometry args={args} />
             <meshStandardMaterial
                 color={color}
@@ -64,7 +71,7 @@ const Mouse = () => {
     });
 
     return (
-        <mesh ref={ref as any} visible={false}>
+        <mesh ref={ref} visible={false}>
             <sphereGeometry args={[2]} />
         </mesh>
     );
@@ -83,6 +90,11 @@ const Boundaries = () => {
 };
 
 const FloatingSkills = () => {
+    const [skillsWithPos] = useState(() => skills.map(skill => ({
+        ...skill,
+        position: [Math.random() * 10 - 5, Math.random() * 10 - 5, 0] as [number, number, number]
+    })));
+
     return (
         <div className="w-full h-[600px] cursor-none relative z-10">
             <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 20], fov: 35 }}>
@@ -91,12 +103,12 @@ const FloatingSkills = () => {
                 <Physics gravity={[0, 0, 0]} iterations={10}>
                     <Mouse />
                     <Boundaries />
-                    {skills.map((skill, i) => (
+                    {skillsWithPos.map((skill, i) => (
                         <SkillSphere
                             key={i}
                             name={skill.name}
                             color={skill.color}
-                            position={[Math.random() * 10 - 5, Math.random() * 10 - 5, 0]}
+                            position={skill.position}
                             args={[1.2, 32, 32]}
                         />
                     ))}

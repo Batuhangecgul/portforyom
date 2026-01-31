@@ -5,6 +5,7 @@ import * as THREE from 'three';
 
 const FloatingCrystal = () => {
     const meshRef = useRef<THREE.Mesh>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const materialRef = useRef<any>(null);
 
     useFrame(({ clock, pointer }) => {

@@ -19,6 +19,19 @@ const AmbientMusic = () => {
         audio.preload = 'auto';
         audioRef.current = audio;
 
+        const tryAutoplay = () => {
+            if (!audioRef.current) return;
+
+            audioRef.current.play()
+                .then(() => {
+                    setIsPlaying(true);
+                    setHasInteracted(true);
+                })
+                .catch(() => {
+                    // Autoplay blocked by browser - will play on user interaction
+                });
+        };
+
         // Try to autoplay after preloader delay
         const autoplayTimeout = setTimeout(() => {
             tryAutoplay();
@@ -52,20 +65,8 @@ const AmbientMusic = () => {
                 audioRef.current = null;
             }
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const tryAutoplay = () => {
-        if (!audioRef.current || isPlaying) return;
-
-        audioRef.current.play()
-            .then(() => {
-                setIsPlaying(true);
-                setHasInteracted(true);
-            })
-            .catch(() => {
-                // Autoplay blocked by browser - will play on user interaction
-            });
-    };
 
     useEffect(() => {
         if (audioRef.current) {
