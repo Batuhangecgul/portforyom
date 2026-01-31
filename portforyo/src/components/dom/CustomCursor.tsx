@@ -38,6 +38,15 @@ const CustomCursor = () => {
         };
     }, [cursorX, cursorY]);
 
+    // Don't render custom cursor on touch devices
+    const [isTouch, setIsTouch] = useState(false);
+
+    useEffect(() => {
+        setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+    }, []);
+
+    if (isTouch) return null;
+
     return (
         <>
             {/* Main cursor dot */}

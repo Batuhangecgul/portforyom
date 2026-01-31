@@ -97,7 +97,7 @@ const AmbientMusic = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 4, duration: 0.5 }}
-            className="fixed bottom-6 left-6 z-[1000] flex items-center gap-3 px-4 py-3 bg-black/60 backdrop-blur-xl border border-white/10 rounded-full"
+            className="fixed top-24 right-4 md:top-auto md:right-auto md:bottom-6 md:left-6 z-[1000] flex items-center gap-3 px-4 py-3 bg-black/60 backdrop-blur-xl border border-white/10 rounded-full"
         >
             <button
                 onClick={togglePlay}

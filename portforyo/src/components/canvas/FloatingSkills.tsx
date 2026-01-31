@@ -96,7 +96,7 @@ const FloatingSkills = () => {
     })));
 
     return (
-        <div className="w-full h-[600px] cursor-none relative z-10">
+        <div className="w-full h-[600px] relative z-10 touch-pan-y">
             <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 20], fov: 35 }}>
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 10]} intensity={1} castShadow />
